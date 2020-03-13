@@ -1,86 +1,88 @@
-# <center> A Quick Research of Active Automata Learning </center> #
+# <center> A Quick Survey of Active Automata Learning </center> #
+
+**Remark**：For Basic theoretical knowledge of the Angluin's L* Algorithm, the interested reader can refer to [this article](https://blog.csdn.net/wcventure/article/details/79144074).
 
 ----------------------------
+
 ## <center> CONTENTS </center> ##
-1. Introduction
-2. Target Automata Types
-	- 2.1 Deterministic Finite Automata (DFAs)
-	- 2.2 Nondeterministic Finite Automata (NFAs)
-	- 2.3 Moore Machine
-	- 2.4 Mealy Machine
-	- 2.5 Register Automata (RAs)
-	- 2.6 Büchi Automata (BAs)
-	- 2.7 Nominal Automata
-	- 2.8 Timed Automata
-	- 2.9 Weighted Automata (WFAs)
-	- 2.10 Hybrid Automata
-	- 2.11 Symbolic Automata (Sigma3 **TBD**)
-	- 2.12 Others
+1. [Introduction](#1-introduction)
+2. [Target Automata Types](#2-target-automata-types)
+    - 2.1 [Deterministic Finite Automata (DFAs)](#21-deterministic-finite-automata-dfa)
+    - 2.2 [Nondeterministic Finite Automata (NFAs)](#22-nondeterministic-finite-automata-nfa)
+    - 2.3 [Moore Machine](#23-moore-machine)
+    - 2.4 [Mealy Machine](#24-mealy-machine)
+    - 2.5 [Register Automata (RAs)](#25-register-automata-ra)
+    - 2.6 [Büchi Automata (BAs)](#26-b%c3%bcchi-automata)
+    - 2.7 [Nominal Automata](#27-nominal-automata)
+    - 2.8 [Timed Automata](#28-timed-automata)
+    - 2.9 [Weighted Automata (WFAs)](#29-weighted-automata)
+    - 2.10 [Hybrid Automata](#210-hybrid-automata)
+    - 2.11 [Symbolic Automata (Sigma3 **TBD**)](#211-symbolic-automata-sigma3-tbd)
+    - 2.12 [Others](#212-others)
 3. Approach
-	- 3.1 Angluin's L* Algorithm
-	- 3.2 RPNI Algorithm (NFAs)
-	- 3.3 Rivest & Schapire's Algorithm
-	- 3.4 Kearns & Vazirani's Algorithm
-	- 3.5 Lω Algorithm (ω-regular sets)
-	- 3.6 RPNI2 Algorithm
-	- 3.7 ID and IID Algorithm
-	- 3.8 DeLeTe2 Algorithm
-	- 3.9 Estimation-Exploration Algorithm
-	- 3.10 L* based Algorithm for Büchi automaton (Büchi automaton)
-	- 3.11 TL* Algorithm (DERAs)
-	- 3.12 LM* and LM+ Algorithm (Mealy Machines)
-	- 3.13 NL* Algorithm (NFAs)
-	- 3.14 IOA Algorithm (Mealy Machines for I/O Automata)
-	- 3.15 DHC and LM* Algorithm (Mealy Machines for realistic reactive systems)
-	- 3.16 RAL Algorithm (Register Automata)
-	- 3.17 Ll Algorithm (finite cover automata)
-	- 3.18 The TTT Algorithm
-	- 3.19 Heerdt's Algorithm (Mealy Machines)
-	- 3.20 SL* Algorithm (EFSM, Register Automata)
-	- 3.21 FDFAs-based Algorithm (Regular ω-languages)
-	- 3.22 A Mapper-Based Algorithm (Register Automata)
-	- 3.23 LearnLTS Algorithm
-	- 3.24 Medhat's Algorithm (Hybrid Automata)
-	- 3.25 learning VPA (Visibly Pushdown Automata)
-	- 3.26 learning WFAS (Weight Automata)
-	- 3.27 MooreMI algorithm (Moore Machines)
-	- 3.28 νL* and νNL* Algorithm (Nominal Automata)
-	- 3.29 Product L* Algorithm (Moore Machines)
-	- 3.30 A Tree-based Algorithm for FDFAs (Büchi automaton)
-4. Tools
-	- 4.1 LearnLib 
-	- 4.2 Next Generation LearnLib (NGLL)
-	- 4.3 Libalf
-	- 4.4 RALT
-	- 4.5 Tomte
-	- 4.6 RALib
-	- 4.7 ROLL
-	- 4.8 Scikit-SpLearn
-5. Application
-	- **5.1 Protocol**
-	- **Special topic: State machine inference for security protocols**
-	- 5.2 SmartCard
-	- 5.3 Legacy software
-	- 5.4 LBT & Testing Finite-State Machines
-	- 5.5 Conformance Testing
-	- 5.6 Model Checking & Black Box Checking
-	- 5.7 Improving Efficiency And Scalability of Verification
-	- 5.8 Testing IoT Communication
-	- 5.9 Inferring Interface Programs of Systems At Runtime
-	- 5.10 Program Structures And Interface Programs
-	- 5.11 Extracting Automata from Neural Networks
-	- 5.12 Active Automata Learning For Real-Life Applications
-	- 5.13 Learning Communicating Automata from MSCs 
-	- 5.14 Automated Compositional Verification For Timed Systems
-	- 5.15 Learn stateful typestates
-	- 5.16 Fuzzy Learning Automata
-6. Challenge And Discussion
-	- 6.1 Predicates and operations on data
-	- 6.2 Beyond Mealy machines
-	- 6.3 Quality of models
-	- 6.4 Opening the box
-	- 6.5 The Challenge of Equivalent query
-7. Reference
+    - 3.1 [Angluin's L* Algorithm](#31-angluins-l-algorithm-pdfhttpspeopleeecsberkeleyedudawnsongteachings10papersangluin87pdf)
+    - 3.2 [RPNI Algorithm (NFAs)](#32-rpni-algorithm-nfas-pdfhttpswwwresearchgatenetpublication239643375inferringregularlanguagesinpolynomialupdatetime)
+    - 3.3 [Rivest & Schapire's Algorithm](#33-rivest--schapires-algorithm-pdfhttptheorylcsmitedurivestrivestschapire-inferenceoffiniteautomatausinghomingsequences-stoc89pdf)
+    - 3.4 [Kearns & Vazirani's Algorithm](#34-kearns--vaziranis-algorithm)
+    - 3.5 [Lω Algorithm (ω-regular sets)](#35-l%cf%89-algorithm-%cf%89-regular-sets-pdfhttpwww-verimagimagfrpeopleodedmalerpaperslearnpdf)
+    - 3.6 [RPNI2 Algorithm](#36-rpni2-algorithm-nfas-pdfhttpswwwresearchgatenetpublication225119373incrementalregularinference)
+    - 3.7 [ID and IID Algorithm](#37-id-and-iid-algorithm-pdfhttpsebastiandocgoldacukpaperslanguagelearningpolyincreggramtr97-03pdf)
+    - 3.8 [DeLeTe2 Algorithm](#38-delete2-algorithm-pdfhttpscoreacukdownloadpdf82264249pdf)
+    - 3.9 [Estimation-Exploration Algorithm](#39-estimation-exploration-algorithm-pdfhttpcsuvmedujbongardpapers2005jmlrbongardpdf)
+    - 3.10 [L* based Algorithm for Büchi automaton (Büchi automaton)](#310-l-based-algorithm-for-b%c3%bcchi-automaton-b%c3%bcchi-automaton-%cf%89-regular-language-pdfhttpwwwcsutorontocaazadehresearchpaperslearningpdf)
+    - 3.11 [TL* Algorithm (DERAs)](#311-tl-algorithm-deras-pdfhttpwwwituuseresearchpublicationsreports2008-0132008-013-ncpdf)
+    - 3.12 [LM* and LM+ Algorithm (Mealy Machines)](#312-lm-and-lm-algorithm-mealy-machines-pdfhttpslinkspringercomcontentpdf1010072f978-3-642-05089-314pdf)
+    - 3.13 [NL* Algorithm (NFAs)](#313-nl-algorithm-nfas-pdfhttpwwwlsvfrpublispaperspdfbhkl-ijcai09pdf)
+    - 3.14 [IOA Algorithm (Mealy Machines for I/O Automata)](#314-ioa-algorithm-mealy-machines-for-io-automata-pdfhttpwwwmbsdcsrunlpublicationspapersfvaanlearningioaspaperpdf)
+    - 3.15 [DHC and LM* Algorithm (Mealy Machines for realistic reactive systems)](#315-dhc-and-lm-algorithm-mealy-machines-for-realistic-reactive-systems-pdfhttpwwwfalkhowardepaperssfm2011-introduction-to-active-automata-learning-from-a-practical-perspectivepdf)
+    - 3.16 [RAL Algorithm (Register Automata)](#316-ral-algorithm-register-automata-pdfhttpwwwfalkhowardepapersvmcai2012-inferring-canonical-register-automatapdf)
+    - 3.17 [Ll Algorithm (finite cover automata)](#317-ll-algorithm-finite-cover-automata-pdfhttpwwwifsoftroflorentinipatepublicationsjcss20201120learning20finite20cover20automata20from20queriespdf)
+    - 3.18 [The TTT Algorithm](#318-the-ttt-algorithm-pdfhttplearnlibdewp-contentuploads201305tttpdf)
+    - 3.19 [Heerdt's Algorithm (Mealy Machines)](#319-heerdts-algorithm-mealy-machines-pdfhttpwwwcsrunlbachelorscripties2014gercovanheerdt4167503efficientinferenceofmealymachinespdf)
+    - 3.20 [SL* Algorithm (EFSM, Register Automata)](#320-sl-algorithm-efsm-register-automata)
+    - 3.21 [FDFAs-based Algorithm (Regular ω-languages)](#321-fdfas-based-algorithm-regular-%cf%89-languages-pdfhttpwwwseasupennedufismandocumentsafalt14pdf)
+    - 3.22 [A Mapper-Based Algorithm (Register Automata)](#322-a-mapper-based-algorithm-register-automata-pdfhttpwwwcsrunlpfiteraubrosteanpublications2015-ictacpdf)
+    - 3.23 [LearnLTS Algorithm](#323-learnlts-algorithm-pdfhttpsjournalubtu-berlindeeceasstarticledownload10081006pdf)
+    - 3.24 [Medhat's Algorithm (Hybrid Automata)](#324-medhats-algorithm-hybrid-automata-pdfhttpsuwaterloocaembedded-software-groupsitescaembedded-software-groupfilesuploadsfilesemsoft-trace-miningpdf)
+    - 3.25 [learning VPA (Visibly Pushdown Automata)](#325-learning-vpa-visibly-pushdown-automata-pdfhttpseldoradotu-dortmunddebitstream2003342821dissertationpdf)
+    - 3.26 [learning WFAS (Weight Automata)](#326-learning-wfas-pdfhttpscsnyuedumohripubcaipdf)
+    - 3.27 [MooreMI algorithm (Moore Machines)](#327-mooremi-algorithm-moore-machines-pdfhttppeopleeecsberkeleyedustavrospapersfm2016pdf-ppthttpresearchcsaaltoficlclday16slidesgiantamidispdf)
+    - 3.28 [νL* and νNL* Algorithm (Nominal Automata)](#328-%ce%bdl-and-%ce%bdnl-algorithm-nominal-automata-pdfhttpwwwmimuweduplklinpaperspopl17pdf)
+    - 3.29 [Product L* Algorithm (Moore Machines)](#329-product---l-algorithm-moore-machines-pdfhttpxueshubaiducomswdpaperuri3a2891de43e91d57c853324f41f4fd5768c529filtersclongsigntnsexueshusource2kduw22vscvurlhttp3a2f2farxivorg2fpdf2f170502850ieutf-8scus14469089663250886455)
+    - 3.30 [A Tree-based Algorithm for FDFAs (Büchi automaton)](#330-a-tree-based-algorithm-for-fdfas-pdfhttpslinkspringercomcontentpdf1010072f978-3-662-54577-512pdf-ppthttpwwwswu-risenetcnsetss2018downloadlearningbuchiautomataanditsapplications-proflijunzhangpdf)
+4. [Tools](#4-tools)
+    - 4.1 [LearnLib](#41-learnlib-pdfhttpswwwresearchgatenetpublication281438717theopen-sourcelearnlibaframeworkforactiveautomatalearning-ppthttpslearnlibdewp-contentuploads201308learnlibpdf)
+    - 4.2 [Next Generation LearnLib (NGLL)](#42-next-generation-learnlib-ngll-pdfhttpwwwfalkhowardepaperstacas2011-next-generation-learnlibpdf)
+    - 4.3 [Libalf](#43-libalf-pdfhttplibalfinformatikrwth-aachendefileslibalf09-extendedabstractpdf)
+    - 4.4 [RALT](#44-ralt)
+    - 4.5 [Tomte](#45-tomte)
+    - 4.6 [RALib](#46-ralib)
+    - 4.7 [ROLL](#47-roll)
+    - 4.8 [Scikit-SpLearn](#48-scikit-splearn)
+5. [Application](#applications)
+    - 5.1 [**Protocol**](#51-potocol)
+    - Special topic: [**State machine inference for security protocols**](#510-special-topic-state-machine-inference-for-security-protocols)
+    - 5.2 [SmartCard](#52-smartcard)
+    - 5.3 [Legacy software](#53-legacy-software)
+    - 5.4 [LBT & Testing Finite-State Machines](#54-lbt--testing-finite-state-machines)
+    - 5.5 [Conformance Testing](#55-conformance-testing)
+    - 5.6 [Model Checking & Black Box Checking](#56-model-checking--black-box-checking)
+    - 5.7 [Improving Efficiency And Scalability of Verification](#57-improving-efficiency-and-scalability-of-verification)
+    - 5.8 [Testing IoT Communication](#58-testing-iot-communication)
+    - 5.9 [Inferring Interface Programs of Systems At Runtime](#59-inferring-interface-programs-of-systems-at-runtime-pdfhttpeldoradouni-dortmundde8080bitstream2003294861dissertationpdf)
+    - 5.10 [Program Structures And Interface Programs](#510-special-topic-state-machine-inference-for-security-protocols)
+    - 5.11 [Extracting Automata from Neural Networks](#511-extracting-automata-from-neural-networks-pdfhttpsarxivorgabs171109576)
+    - 5.12 [Active Automata Learning For Real-Life Applications](#512-active-automata-learning-for-real-life-applications-pdfhttpspdfssemanticscholarorg9cb974b6ece3e3fc2eab4f9cf0843bfc570df4a9pdf)
+    - 5.13 [Learning Communicating Automata from MSCs](#513-learning-communicating-automata-from-mscs-pdfhttpwww4intumdeleuckerdocumentsleuckertse09prelimpdf)
+    - 5.14 [Automated Compositional Verification For Timed Systems](#514-automated-compositional-verification-for-timed-systems-pdfhttpwww-lipnuniv-paris13frandredocumentslearning-assumptions-for-compositional-verification-of-timed-systemspdf)
+    - 5.15 [Learn stateful typestates](#515-learn-stateful-typestates-pdfhttppdfssemanticscholarorg61d6893aa6ba0e18e71cb81cd869b1c8e0bf93d6pdf)
+    - 5.16 [Fuzzy Learning Automata](#515-fuzzy-learning-automata-pdfhttpieeexploreieeeorgdocument7724946)
+6. [Challenge And Discussion](#6-challenges-and-discussion)
+    - 6.1 [Predicates and operations on data](#61-predicates-and-operations-on-data)
+    - 6.2 [Beyond Mealy machines](#62-beyond-mealy-machines)
+    - 6.3 [Quality of models](#63-quality-of-models)
+    - 6.4 [Opening the box](#64-opening-the-box)
+7. [Reference](#7-reference)
 
 ----------------------------
 
@@ -271,8 +273,8 @@ Formally, a timed automaton is a tuple A = (Q,Σ,C,E,q0) that consists of the fo
 - Σ is a finite set called the alphabet or actions of A.  
 - C is a finite set called the clocks of A.  
 - E ⊆ Q × Σ × B(C) × P(C) × Q is a set of edges, called transitions of A, where  
-	- B(C) is the set of boolean clock constraints involving clocks from C, and  
-	- P(C) is the powerset of C.  
+    - B(C) is the set of boolean clock constraints involving clocks from C, and  
+    - P(C) is the powerset of C.  
 - q0 is an element of Q, called the initial state.  
 An edge (q,a,g,r,q') from E is a transition from state q to q' with action a, guard g and clock resets r.
 
@@ -587,13 +589,13 @@ Currently, the following learning algorithms are supported:
 
 | FEATURE | OPEN-SOURCE LEARNLIB | OLD LEARNLIB (PUBLIC RELEASE) | OLD LEARNLIB (INTERNAL) |
 |:-----------------------------------------:|:-------:|:------:|:----------:|
-| TTT algorithm	                            | √       | X      | X          |
+| TTT algorithm                                | √       | X      | X          |
 | Wp-method                                 | √       | X      | X          |
-| Random walk           	                | √       | X      | X          |
-| Reuse filter	                            | √       | X      | √          |
+| Random walk                               | √       | X      | X          |
+| Reuse filter                                | √       | X      | √          |
 | Register Automata learning                | X       | X      | √          |
 | Generic design                            | √       | X      | X          |
-| Graphical modeling tool (LearnLib studio)	| X       | √      | √          |
+| Graphical modeling tool (LearnLib studio)    | X       | √      | √          |
 
 
 ### 4.2 Next Generation LearnLib (NGLL) [*[PDF]*](http://www.falkhowar.de/papers/TACAS2011-Next-Generation-LearnLib.pdf) ###
@@ -622,15 +624,15 @@ Currently, the following learning algorithms are supported:
 
 | Algorithm                                           | offline | online | target model |
 |:---------------------------------------------------:|:-------:|:------:|:------------:|
-| Angluin's L*	                                      | √       | X      | DFA          |
-| L* (adding counter-examples to columns)	          | √       | X      | DFA          |
-| Kearns / Vazirani           	                      | √       | X      | DFA          |
-| Rivest / Schapire	                                  | √       | X      | DFA          |
-| NL*	                                              | √       | X      | NFA          |
+| Angluin's L*                                          | √       | X      | DFA          |
+| L* (adding counter-examples to columns)              | √       | X      | DFA          |
+| Kearns / Vazirani                                     | √       | X      | DFA          |
+| Rivest / Schapire                                      | √       | X      | DFA          |
+| NL*                                                  | √       | X      | NFA          |
 | Regular positive negative inference (RPNI)          | X       | √      | DFA          |
-| DeLeTe2	                                          | X       | √      | NFA          |
+| DeLeTe2                                              | X       | √      | NFA          |
 | Biermann & Feldman's algorithm                      | X       | √      | NFA          |
-| Biermann & Feldman's algorithm (using SAT-solving)  | X	 	| √      | DFA          |
+| Biermann & Feldman's algorithm (using SAT-solving)  | X         | √      | DFA          |
 
 ### 4.4 RALT ###
 
@@ -725,7 +727,7 @@ Symbolicautomata is an efficient automata library that allows you to represent l
 | Cobleigh et al. 2003 [@Cobleigh2003Learning]  | L*                    | --                      | Compositional Verification           |
 | Margaria et al. 2004 [@Margaria2004Efficient] | L* , L* for Mealy     | --                      | Legacy Software                      |
 | Chaki et al. 2005 [@Chaki2005Automated]       | LT for DTA            | --                      | verification                         |
-| Alur et al. 2008 [@alur2005symbolic]			| L*                    | --                      | Symbolic compositional verification  |
+| Alur et al. 2008 [@alur2005symbolic]            | L*                    | --                      | Symbolic compositional verification  |
 | Raffelt et al. 2007 [@Raffelt2007Dynamic]     | --                    | LearnLib                | Dynamic Testing                      |
 | Chen et al. 2009[@Chen2009Learning]           | L-seq                 | --                      | Compositional Verification           |
 | Aarts et al. 2010 [@Aarts2010Generating]      | L*                    | LearnLib                | Protocol (SIP and TCP)               |
@@ -796,33 +798,33 @@ Below an overview of research into the use of using active learning to analyse i
 
 ##### 5.1.4 Network security protocols #####
 - **TLS**
-	- Joeri de Ruiter, A Tale of the OpenSSL State Machine: a Large-scale Black-box Analysis, NordSec 2016, LNCS volume 10014, pp. 169-184, Springer, 2016. [[*Models*](http://www.cs.ru.nl/~joeri/download/nordsec16_models.tgz), [*Scripts*](http://www.cs.ru.nl/~joeri/download/nordsec16_scripts.tgz)] ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/nordsec16.pdf)****
-	- Joeri de Ruiter and Erik Poll, Protocol state fuzzing of TLS implementations, USENIX Security, USENIX, 2015. [[*Code*](https://github.com/jderuiter/statelearner), [*Models*](http://www.cs.ru.nl/~joeri/download/usenix15.zip)]  ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/usenix15.pdf)****
+    - Joeri de Ruiter, A Tale of the OpenSSL State Machine: a Large-scale Black-box Analysis, NordSec 2016, LNCS volume 10014, pp. 169-184, Springer, 2016. [[*Models*](http://www.cs.ru.nl/~joeri/download/nordsec16_models.tgz), [*Scripts*](http://www.cs.ru.nl/~joeri/download/nordsec16_scripts.tgz)] ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/nordsec16.pdf)****
+    - Joeri de Ruiter and Erik Poll, Protocol state fuzzing of TLS implementations, USENIX Security, USENIX, 2015. [[*Code*](https://github.com/jderuiter/statelearner), [*Models*](http://www.cs.ru.nl/~joeri/download/usenix15.zip)]  ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/usenix15.pdf)****
 
 - **SSH**
-	- Paul Fiterau-Brostean, Frits Vaandrager, Erik Poll, Joeri de Ruiter, Toon Lenaerts and Patrick Verleg, Model Learning and Model Checking of SSH Implementations, Paul Fiterau-Brostean, Frits Vaandrager, Erik Poll, Joeri de Ruiter, Toon Lenaerts and Patrick Verleg, SPIN 2017, p. 142-151, ACM, 2017. [[*Models*](https://gitlab.science.ru.nl/pfiteraubrostean/Learning-SSH-Paper/tree/master/models)] ****[*[PDF]*](http://dl.acm.org/citation.cfm?id=3092289)****
-	- Toon Lenaerts, Improving-protocol state fuzzing of SSH, Bachelor thesis, Radboud University, 2017. ****[*[PDF]*](http://www.cs.ru.nl/bachelorscripties/2017/Toon_Lenaerts___4321219___Improving-protocol-state-fuzzing-of-SSH.pdf)****
-	- Patrick Verleg, Inferring SSH state machines using protocol state fuzzing, Master thesis, Radboud University Nijmegen, 2016. ****[*[PDF]*](http://www.ru.nl/publish/pages/769526/z07_patrick_verleg.pdf)****
+    - Paul Fiterau-Brostean, Frits Vaandrager, Erik Poll, Joeri de Ruiter, Toon Lenaerts and Patrick Verleg, Model Learning and Model Checking of SSH Implementations, Paul Fiterau-Brostean, Frits Vaandrager, Erik Poll, Joeri de Ruiter, Toon Lenaerts and Patrick Verleg, SPIN 2017, p. 142-151, ACM, 2017. [[*Models*](https://gitlab.science.ru.nl/pfiteraubrostean/Learning-SSH-Paper/tree/master/models)] ****[*[PDF]*](http://dl.acm.org/citation.cfm?id=3092289)****
+    - Toon Lenaerts, Improving-protocol state fuzzing of SSH, Bachelor thesis, Radboud University, 2017. ****[*[PDF]*](http://www.cs.ru.nl/bachelorscripties/2017/Toon_Lenaerts___4321219___Improving-protocol-state-fuzzing-of-SSH.pdf)****
+    - Patrick Verleg, Inferring SSH state machines using protocol state fuzzing, Master thesis, Radboud University Nijmegen, 2016. ****[*[PDF]*](http://www.ru.nl/publish/pages/769526/z07_patrick_verleg.pdf)****
 
 - **OpenVPN**
-	- Lesly-Ann Daniel, Inferring OpenVPN State Machines Using Protocol State Fuzzing, Internship report, University of Rennes 1 and ENS Rennes, 2017 [[*Code*](https://framagit.org/leslyann/statelearner)] ****[*[PDF]*](http://www.cs.ru.nl/~joeri/StateMachineInference.html)**** 
+    - Lesly-Ann Daniel, Inferring OpenVPN State Machines Using Protocol State Fuzzing, Internship report, University of Rennes 1 and ENS Rennes, 2017 [[*Code*](https://framagit.org/leslyann/statelearner)] ****[*[PDF]*](http://www.cs.ru.nl/~joeri/StateMachineInference.html)**** 
 
 - **IPSEC**
-	- Bart Veldhuizen, Automated state machine learning of IPsec implementations, Bachelor thesis, Radboud University Nijmegen, 2017. ****[*[PDF]*](http://www.cs.ru.nl/bachelorscripties/2017/Bart_Veldhuizen___4492765___Automated_state_machine_learning_of_IPsec_implementations.pdf)****
+    - Bart Veldhuizen, Automated state machine learning of IPsec implementations, Bachelor thesis, Radboud University Nijmegen, 2017. ****[*[PDF]*](http://www.cs.ru.nl/bachelorscripties/2017/Bart_Veldhuizen___4492765___Automated_state_machine_learning_of_IPsec_implementations.pdf)****
 
 ##### 5.1.5 Smartcards and banking tokens #####
 
 - **EMV (EuroPay-Mastercard-Visa)**
-	- Fides Aarts, Joeri de Ruiter and Erik Poll, Formal Models of Bank Cards for Free, SECTEST 2013, pp. 461-468, IEEE, 2013. [[*Code & models*](http://www.cs.ru.nl/~joeri/download/sectest13.zip)] (More info and models [here](http://automata.cs.ru.nl/BenchmarkBankcard).) ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/sectest13.pdf)****
+    - Fides Aarts, Joeri de Ruiter and Erik Poll, Formal Models of Bank Cards for Free, SECTEST 2013, pp. 461-468, IEEE, 2013. [[*Code & models*](http://www.cs.ru.nl/~joeri/download/sectest13.zip)] (More info and models [here](http://automata.cs.ru.nl/BenchmarkBankcard).) ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/sectest13.pdf)****
 - **EMV-based banking tokens**
-	- Georg Chalupar, Stefan Peherstorfer, Erik Poll and Joeri de Ruiter, Automated Reverse Engineering using Lego, WOOT'14, USENIX, 2014. ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/woot14.pdf)****
+    - Georg Chalupar, Stefan Peherstorfer, Erik Poll and Joeri de Ruiter, Automated Reverse Engineering using Lego, WOOT'14, USENIX, 2014. ****[*[PDF]*](http://www.cs.ru.nl/~joeri/papers/woot14.pdf)****
 - **e-passport**
-	- Fides Aarts, Julien Schmaltz, Frits Vaandrager, Inference and abstraction of the biometric passport, ISoLa 2010, LNCS volume 6415, pp. pp 673-686, Springer, 2010. (More info and models [here](http://automata.cs.ru.nl/BenchmarkPassport).) ****[*[PDF]*](http://www.sws.cs.ru.nl/publications/papers/fvaan/passport/)****
+    - Fides Aarts, Julien Schmaltz, Frits Vaandrager, Inference and abstraction of the biometric passport, ISoLa 2010, LNCS volume 6415, pp. pp 673-686, Springer, 2010. (More info and models [here](http://automata.cs.ru.nl/BenchmarkPassport).) ****[*[PDF]*](http://www.sws.cs.ru.nl/publications/papers/fvaan/passport/)****
 
 ##### 5.1.6 Industrial Control Systems #####
 
 - **IEC 60870-5-104**
-	- Max Kerkers, Assessing the Security of IEC 60870-5-104 Implementations using Automata Learning, MSc thesis, University of Twente, 2017 [[*Source code*](https://github.com/mkerkers/mealy104)]  ****[*[PDF]*](http://essay.utwente.nl/72277/1/Kerkers_MA_EEMCS.pdf)****
+    - Max Kerkers, Assessing the Security of IEC 60870-5-104 Implementations using Automata Learning, MSc thesis, University of Twente, 2017 [[*Source code*](https://github.com/mkerkers/mealy104)]  ****[*[PDF]*](http://essay.utwente.nl/72277/1/Kerkers_MA_EEMCS.pdf)****
 
 
 ### 5.2 SmartCard ###
@@ -1140,14 +1142,14 @@ Isberner et al. 2015 developed a model learning algorithm for visibly pushdown a
       year={2005},
     }
 
-	@inproceedings{alur2005symbolic,
-	  title={Symbolic compositional verification by learning assumptions},
-	  author={Alur, Rajeev and Madhusudan, Parthasarathy and Nam, Wonhong},
-	  booktitle={International Conference on Computer Aided Verification},
-	  pages={548--562},
-	  year={2005},
-	  organization={Springer}
-	}
+    @inproceedings{alur2005symbolic,
+      title={Symbolic compositional verification by learning assumptions},
+      author={Alur, Rajeev and Madhusudan, Parthasarathy and Nam, Wonhong},
+      booktitle={International Conference on Computer Aided Verification},
+      pages={548--562},
+      year={2005},
+      organization={Springer}
+    }
 
     @inproceedings{Raffelt2006LearnLib,libalf the automata learn
       title={LearnLib: a library for automata learning and experimentation},
@@ -1533,11 +1535,11 @@ Isberner et al. 2015 developed a model learning algorithm for visibly pushdown a
       year={2015},
     }
 
-	@article{Balle2015Learning,
-	  title={Learning Weighted Automata},
-	  author={Balle, Borja and Mohri, Mehryar},
-	  year={2015},
-	}
+    @article{Balle2015Learning,
+      title={Learning Weighted Automata},
+      author={Balle, Borja and Mohri, Mehryar},
+      year={2015},
+    }
 
     @book{Smeenk2015Applying,
       title={Applying Automata Learning to Embedded Control Software},
@@ -1686,10 +1688,10 @@ Isberner et al. 2015 developed a model learning algorithm for visibly pushdown a
       year={2017},
     }
 
-	@inproceedings{arrivault2017sp2learn,
-	  title={Sp2Learn: A Toolbox for the spectral learning of weighted automata},
-	  author={Arrivault, Denis and Benielli, Dominique and Denis, Fran{\c{c}}ois and Eyraud, R{\'e}mi},
-	  booktitle={International Conference on Grammatical Inference},
-	  pages={105--119},
-	  year={2017}
-	}
+    @inproceedings{arrivault2017sp2learn,
+      title={Sp2Learn: A Toolbox for the spectral learning of weighted automata},
+      author={Arrivault, Denis and Benielli, Dominique and Denis, Fran{\c{c}}ois and Eyraud, R{\'e}mi},
+      booktitle={International Conference on Grammatical Inference},
+      pages={105--119},
+      year={2017}
+    }
